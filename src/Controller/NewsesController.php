@@ -37,6 +37,7 @@ class NewsesController
     }
 
     /**
+     * Selecting only active newses that will be showed for not logged in users
      * @return array
      */
     public function getActiveNewses() : array
@@ -55,6 +56,8 @@ class NewsesController
     }
 
     /**
+     * Fetch all Newses that will be showed for logged in user, so it could be
+     * edit or delete.
      * @return array
      */
     public function getAllNewses() : array
@@ -71,6 +74,7 @@ class NewsesController
     }
 
     /**
+     * Deleting News
      * @param $id
      */
     public function deleteNews(string $id) : bool
@@ -84,6 +88,7 @@ class NewsesController
     }
 
     /**
+     * Editing News
      * @return bool
      */
     public function editNews() : bool
@@ -108,6 +113,7 @@ class NewsesController
     }
 
     /**
+     * Adding new News
      * @return bool
      */
     public function addNews()

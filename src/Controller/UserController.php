@@ -36,6 +36,10 @@ class UserController
 
     }
 
+    /**
+     * Method for allowing user to log in
+     * @return bool
+     */
     public function loginUser() : bool
     {
         $email = $_POST['email'];
@@ -45,7 +49,6 @@ class UserController
 
         $query = $this->connection->query($sql);
         $result = $query->fetch_array();
-        $hash = password_hash($password, PASSWORD_DEFAULT);
 
         if ($query->num_rows == 1 && password_verify($password, $result['password']))
         {
@@ -62,6 +65,10 @@ class UserController
 
     }
 
+    /**
+     * Method for creating new account for user.
+     * @return bool
+     */
     public function registerUser() : bool
     {
 
@@ -83,7 +90,13 @@ class UserController
         return $query;
     }
 
-
+    /**
+     * Validating if user already exit in DB, if not creating a model of user
+     * that will be used later for creating new user.
+     *
+     * @param string $email
+     * @return bool
+     */
     public function isUserExist(string $email) : bool
     {
         $user = $this->connection->query('SELECT * FROM users WHERE email = "'.$email.'"');
@@ -98,7 +111,12 @@ class UserController
         return false;
     }
 
-    public function setUser() : UserModel
+    /**
+     * Setting UserModel for later use
+     *
+     * @return UserModel
+     */
+    private function setUser() : UserModel
     {
 
         $user = new UserModel();
@@ -112,11 +130,18 @@ class UserController
         $this->user = $user;
     }
 
+    /**
+     * @return UserModel
+     */
     public function getUser() : UserModel
     {
         return $this->user;
     }
 
+    /**
+     * Method to perform logout and destroying session.
+     * @return bool
+     */
     public static function logout() : bool
     {
         session_destroy();
