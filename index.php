@@ -15,9 +15,12 @@
 
 
 session_start();
+// Checks if user is logged in, so correct page could be displayed.
 if(isset($_SESSION["login"]) && $_SESSION["login"] === true){
+    // Page for all manipulation of newses
     include("news_admin.php");
 }else{
+    // Main page for not logged in user, where all active newses are displayed, and register or login is possible
     include('register.php');
 }
 
