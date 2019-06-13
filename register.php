@@ -15,6 +15,7 @@ if (isset($_POST['register'])) {
     }else {
         if ($userController->registerUser()) {
             $register_info = 'Your account has been created';
+
         }
     }
 

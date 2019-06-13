@@ -71,7 +71,6 @@ class UserController
      */
     public function registerUser() : bool
     {
-
         $sql = 'INSERT 
                 INTO users (first_name, last_name, gender, email, password) 
                 VALUES (?, ?, ?, ?, ?);';
@@ -107,7 +106,6 @@ class UserController
 
         $this->setUser();
 
-
         return false;
     }
 
@@ -126,8 +124,8 @@ class UserController
             ->setEmail($_POST['email'])
             ->setGender($_POST['gender'])
             ->setPassword($_POST['password']);
-
         $this->user = $user;
+        return $user;
     }
 
     /**
